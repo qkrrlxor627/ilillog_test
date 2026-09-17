@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: ilog
+  autoconfigure:
+    # JWT 인증만 사용하므로 기본 인메모리 사용자(생성 비밀번호 로그)를 만들지 않는다.
+    exclude: org.springframework.boot.security.autoconfigure.UserDetailsServiceAutoConfiguration
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc.time_zone: UTC
+  flyway:
+    enabled: true
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+jwt:
+  secret: ${JWT_SECRET}
+  access-token-validity-seconds: ${JWT_ACCESS_TTL:1800}
+
+cors:
+  allowed-origins: ${CORS_ALLOWED_ORIGINS:}
+
+management:
+  endpoints.web.exposure.include: health,info
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui

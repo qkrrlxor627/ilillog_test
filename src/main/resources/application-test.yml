@@ -1,0 +1,17 @@
+# 테스트용: DataSource 는 Testcontainers @ServiceConnection 으로 주입된다.
+spring:
+  jpa:
+    properties:
+      hibernate:
+        generate_statistics: true
+
+jwt:
+  # 테스트 컨텍스트마다 무작위 키 (레포에 비밀값을 두지 않는다)
+  secret: ${random.uuid}${random.uuid}
+
+cors:
+  allowed-origins: http://localhost:5173
+
+logging:
+  level:
+    org.hibernate.engine.internal.StatisticalLoggingSessionEventListener: warn
