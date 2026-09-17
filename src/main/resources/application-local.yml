@@ -1,0 +1,16 @@
+# 로컬 개발용 (docker-compose.yml 의 PostgreSQL)
+# 비밀값(JWT_SECRET 등)은 환경변수로 주입하고, 개인 설정은 application-personal.yml(.gitignore)에 둔다.
+spring:
+  config:
+    import: optional:classpath:application-personal.yml
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:${DB_PORT:5432}/ilog}
+    username: ${DB_USERNAME:ilog}
+    password: ${DB_PASSWORD:ilog}
+
+cors:
+  allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
+
+logging:
+  level:
+    com.ilog: debug
